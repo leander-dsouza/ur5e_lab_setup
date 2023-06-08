@@ -18,7 +18,7 @@
             <joint name="shoulder_lift_joint">
                 <command_interface name="position"/>
                 <state_interface name="position">
-                  <param name="initial_value">0</param>
+                  <param name="initial_value">-1.5707</param>
                 </state_interface>
                 <state_interface name="velocity"/>
             </joint>

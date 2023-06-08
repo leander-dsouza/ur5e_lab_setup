@@ -1,6 +1,7 @@
 controller_manager:
   ros__parameters:
-    update_rate: 500  # Hz
+
+    update_rate: 100 # Hz
 
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
@@ -14,7 +15,7 @@ controller_manager:
     force_torque_sensor_broadcaster:
       type: ur_controllers/ForceTorqueStateBroadcaster
 
-    ur_controller:
+    joint_trajectory_controller:
       type: joint_trajectory_controller/JointTrajectoryController
 
     scaled_joint_trajectory_controller:
@@ -46,7 +47,7 @@ force_torque_sensor_broadcaster:
     topic_name: ft_data
 
 
-ur_controller:
+joint_trajectory_controller:
   ros__parameters:
     joints:
       - shoulder_pan_joint

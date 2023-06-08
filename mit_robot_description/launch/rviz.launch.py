@@ -18,7 +18,8 @@ def generate_launch_description():
     """
     # .................. Configurable Arguments .....................
 
-    gui = False
+    gui = True
+
     gazebo_enabled = False
     rviz_config = 'urdf.rviz'
 
@@ -74,7 +75,7 @@ def generate_launch_description():
             package='rviz2',
             executable='rviz2',
             output='screen',
-            arguments=['-d', [os.path.join(pkg_dir, 'rviz/'), \
+            arguments=['-d', [os.path.join(pkg_dir, 'config', 'rviz/'), \
                 LaunchConfiguration("rviz_config")]],
         ),
 
