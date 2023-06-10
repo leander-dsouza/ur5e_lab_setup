@@ -7,7 +7,7 @@ moveit_setup_assistant_config:
   package_settings:
     author_name: Leander Stephen D'Souza
     author_email: leanderdsouza1234@gmail.com
-    generated_timestamp: 1686424858
+    generated_timestamp: 1686429748
   control_xacro:
     command:
       - position

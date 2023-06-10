@@ -1,19 +1,23 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro" name="ur">
 
-	 <!-- xacro arguments -->
-   <xacro:arg name="safety_limits" default="true"/>
-   <xacro:arg name="safety_pos_margin" default="0.15"/>
-   <xacro:arg name="safety_k_position" default="20"/>
-	 <xacro:arg name="name" default="ur"/>
-   <xacro:arg name="ur_type" default="ur5e"/>
-	 <xacro:arg name="prefix" default=""/>
-	 <xacro:arg name="sim_gazebo" default="true" />
-	 <xacro:arg name="simulation_controllers" default="$(find mit_robot_control)/config/ur_controllers.yaml" />
+	<!-- xacro arguments -->
+	<xacro:arg name="safety_limits" default="true"/>
+	<xacro:arg name="safety_pos_margin" default="0.15"/>
+	<xacro:arg name="safety_k_position" default="20"/>
+	<xacro:arg name="name" default="ur"/>
+	<xacro:arg name="ur_type" default="ur5e"/>
+	<xacro:arg name="prefix" default=""/>
+	<xacro:arg name="sim_gazebo" default="true" />
+	<xacro:arg name="simulation_controllers" default="$(find mit_robot_control)/config/ur_controllers.yaml" />
 
-   <!-- import main macro -->
-   <xacro:include filename="$(find ur_description)/urdf/ur.urdf.xacro"/>
+	<!-- import main macro -->
+	<xacro:include filename="$(find ur_description)/urdf/ur.urdf.xacro"/>
 
+	<!-- add materials -->
+	<xacro:include filename="$(find mit_robot_description)/urdf/materials.urdf.xacro"/>
 
+	 <!-- add gripper -->
+	<xacro:include filename="$(find mit_robot_description)/urdf/gripper.urdf.xacro"/>
 
 </robot>
