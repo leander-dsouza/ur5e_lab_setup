@@ -67,7 +67,7 @@ def launch_setup(context, *args, **kwargs):
 
     ur_moveit_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            [FindPackageShare("ur_moveit_config"), "/launch", "/ur_moveit.launch.py"]
+            [FindPackageShare("mit_robot_moveit_config"), "/launch", "/ur_moveit.launch.py"]
         ),
         launch_arguments={
             "ur_type": ur_type,
@@ -78,7 +78,7 @@ def launch_setup(context, *args, **kwargs):
             "moveit_config_file": moveit_config_file,
             "prefix": prefix,
             "use_sim_time": "true",
-            "launch_rviz": "true",
+            "launch_moveit_rviz": "true",
         }.items(),
     )
 

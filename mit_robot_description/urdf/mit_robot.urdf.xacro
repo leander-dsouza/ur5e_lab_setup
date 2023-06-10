@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://wiki.ros.org/xacro" name="mit_robot">
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="ur">
 
 	 <!-- xacro arguments -->
    <xacro:arg name="safety_limits" default="true"/>
@@ -8,7 +8,7 @@
 	 <xacro:arg name="name" default="ur"/>
    <xacro:arg name="ur_type" default="ur5e"/>
 	 <xacro:arg name="sim_gazebo" default="true" />
-	 <xacro:arg name="simulation_controllers" default="$(find mit_robot_description)/config/ur_controllers.yaml" />
+	 <xacro:arg name="simulation_controllers" default="$(find mit_robot_control)/config/ur_controllers.yaml" />
 
    <!-- import main macro -->
    <xacro:include filename="$(find ur_description)/urdf/ur.urdf.xacro"/>

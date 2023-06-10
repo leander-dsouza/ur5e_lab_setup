@@ -120,7 +120,7 @@ def launch_setup(context, *args, **kwargs):
     # Gazebo nodes
     gazebo = ExecuteProcess(
         cmd=['gazebo', '--verbose', \
-            [PathJoinSubstitution([FindPackageShare("mit_robot_gazebo"), "worlds", LaunchConfiguration("world_name")])], \
+            [PathJoinSubstitution([FindPackageShare("mit_robot_gazebo"), "worlds", world_name])], \
         '-s', 'libgazebo_ros_init.so',
         '-s', 'libgazebo_ros_factory.so'],
         output='screen')
@@ -235,7 +235,10 @@ def generate_launch_description():
         )
     )
     declared_arguments.append(
-        DeclareLaunchArgument("launch_rviz", default_value="true", description="Launch RViz?")
+        DeclareLaunchArgument(
+            "launch_rviz",
+            default_value="true",
+            description="Launch RViz?")
     )
 
     return LaunchDescription(declared_arguments + [OpaqueFunction(function=launch_setup)])

@@ -13,7 +13,7 @@ find_package(ament_cmake REQUIRED)
 
 # .............. Added Block of Code ..................
 
-install(DIRECTORY rviz launch urdf
+install(DIRECTORY rviz launch urdf config
   DESTINATION share/${PROJECT_NAME})
 
 #......................................................
