@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="ur">
+
+	<gazebo reference="suction_base_link">
+		<material>Gazebo/White</material>
+	</gazebo>
+
+	<gazebo>
+		<plugin name='vacuum_gripper' filename='libgazebo_ros_vacuum_gripper.so'>
+			<ros>
+				<namespace>/ur</namespace>
+				<remapping>switch:=switch_test</remapping>
+				<remapping>grasping:=grasping_test</remapping>
+			</ros>
+			<link_name>suction_gripper_link</link_name>
+			<max_distance>10.0</max_distance>
+			<fixed>ground_plane</fixed>
+		</plugin>
+	</gazebo>
+
+</robot>

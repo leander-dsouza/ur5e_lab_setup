@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro" name="ur">
 
-	<link name="suction_gripper_link">
+	<link name="suction_base_link">
 		<inertial>
 			<origin xyz="0 0 -0.026287" rpy="0 0 0"/>
 			<mass value="0.10731"/>
@@ -22,14 +22,25 @@
 		</visual>
 	</link>
 
-	<gazebo reference="suction_gripper_link">
-		<material>Gazebo/White</material>
-	</gazebo>
-
 	<joint name="gripper_joint" type="fixed">
 		<parent link="tool0"/>
-		<child link="suction_gripper_link"/>
+		<child link="suction_base_link"/>
 		<origin xyz="0 0 0" rpy="0 ${pi} 0"/>
+	</joint>
+
+	<!-- Adding link for gripping -->
+	<link name="suction_gripper_link">
+		<inertial>
+			<mass value="0.001"/>
+			<inertia ixx="1e-6" ixy="0.0" ixz="0.0" iyy="1e-6" iyz="0.0" izz="1e-6"/>
+		</inertial>
+	</link>
+
+	<joint name="suction_gripper_joint" type="continuous">
+		<parent link="wrist_3_link"/>
+		<child link="suction_gripper_link"/>
+		<origin xyz="0 0 0.1" rpy="0 ${-pi/2} ${pi}"/>
+		<axis xyz="0 0 1" rpy="0 0 0" />
 	</joint>
 
 </robot>

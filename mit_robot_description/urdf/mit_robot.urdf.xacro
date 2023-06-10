@@ -20,4 +20,7 @@
 	 <!-- add gripper -->
 	<xacro:include filename="$(find mit_robot_description)/urdf/gripper.urdf.xacro"/>
 
+	<!-- add gazebo related -->
+	<xacro:include filename="$(find mit_robot_description)/urdf/mit_robot.gazebo.urdf.xacro"/>
+
 </robot>

@@ -7,6 +7,8 @@ Panels:
         - /Global Options1
         - /Status1
         - /RobotModel1/Description Topic1
+        - /TF1
+        - /TF1/Frames1
       Splitter Ratio: 0.5
     Tree Height: 1031
   - Class: rviz_common/Selection
@@ -97,6 +99,15 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        suction_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        suction_gripper_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         tool0:
           Alpha: 1
           Show Axes: false
@@ -133,6 +144,67 @@ Visualization Manager:
       Update Interval: 0
       Value: true
       Visual Enabled: true
+    - Class: rviz_default_plugins/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: false
+        base:
+          Value: false
+        base_link:
+          Value: false
+        base_link_inertia:
+          Value: false
+        flange:
+          Value: false
+        forearm_link:
+          Value: false
+        ft_frame:
+          Value: false
+        shoulder_link:
+          Value: false
+        suction_base_link:
+          Value: true
+        suction_gripper_link:
+          Value: true
+        tool0:
+          Value: false
+        upper_arm_link:
+          Value: false
+        world:
+          Value: false
+        wrist_1_link:
+          Value: false
+        wrist_2_link:
+          Value: false
+        wrist_3_link:
+          Value: false
+      Marker Scale: 1
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree:
+        world:
+          base_link:
+            base:
+              {}
+            base_link_inertia:
+              shoulder_link:
+                upper_arm_link:
+                  forearm_link:
+                    wrist_1_link:
+                      wrist_2_link:
+                        wrist_3_link:
+                          flange:
+                            tool0:
+                              suction_base_link:
+                                suction_gripper_link:
+                                  {}
+                          ft_frame:
+                            {}
+      Update Interval: 0
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -179,25 +251,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 1.8979061841964722
+      Distance: 2.182302236557007
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.27113088965415955
-        Y: 0.08998262882232666
-        Z: 0.6931977272033691
+        X: 0.4117979109287262
+        Y: 0.08759044110774994
+        Z: 0.1959308534860611
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.1353987157344818
+      Pitch: 0.4953981637954712
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 6.250402450561523
+      Yaw: 0.28720659017562866
     Saved: ~
 Window Geometry:
   Displays:
