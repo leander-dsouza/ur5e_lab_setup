@@ -3,11 +3,11 @@ moveit_setup_assistant_config:
     package: mit_robot_description
     relative_path: urdf/mit_robot.urdf.xacro
   srdf:
-    relative_path: config/mit_robot.srdf
+    relative_path: srdf/mit_robot.srdf
   package_settings:
     author_name: Leander Stephen D'Souza
     author_email: leanderdsouza1234@gmail.com
-    generated_timestamp: 1686147120
+    generated_timestamp: 1686424858
   control_xacro:
     command:
       - position

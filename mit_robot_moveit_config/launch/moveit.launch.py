@@ -67,7 +67,7 @@ def launch_setup(context, *args, **kwargs):
 
     ur_moveit_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            [FindPackageShare("mit_robot_moveit_config"), "/launch", "/ur_moveit.launch.py"]
+            [FindPackageShare("mit_robot_moveit_config"), "/launch", "/mit_robot_moveit.launch.py"]
         ),
         launch_arguments={
             "ur_type": ur_type,

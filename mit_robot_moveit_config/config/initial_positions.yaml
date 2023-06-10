@@ -1,4 +1,4 @@
-# Default initial positions for mit_robot's ros2_control fake system
+# Default initial positions for ur's ros2_control fake system
 
 initial_positions:
   elbow_joint: 0

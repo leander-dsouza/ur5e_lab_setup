@@ -30,8 +30,9 @@
 # Author: Denis Stogl
 
 import os
-import math
 import yaml
+import math
+
 from ament_index_python.packages import get_package_share_directory
 
 from launch_ros.actions import Node
@@ -55,6 +56,7 @@ def construct_angle_degrees(loader, node):
     """Utility function for converting degrees into radians from yaml."""
     return math.radians(construct_angle_radians(loader, node))
 
+
 def load_yaml(package_name, file_path):
     package_path = get_package_share_directory(package_name)
     absolute_file_path = os.path.join(package_path, file_path)
@@ -70,6 +72,7 @@ def load_yaml(package_name, file_path):
             return yaml.safe_load(file)
     except OSError:  # parent of IOError, OSError *and* WindowsError where available
         return None
+
 
 def launch_setup(context, *args, **kwargs):
     # Initialize Arguments
@@ -299,7 +302,7 @@ def generate_launch_description():
     declared_arguments.append(
         DeclareLaunchArgument(
             "use_fake_hardware",
-            default_value="true",
+            default_value="false",
             description="Indicate whether robot is running with fake hardware mirroring command to its states.",
         )
     )
@@ -386,7 +389,7 @@ def generate_launch_description():
         )
     )
     declared_arguments.append(
-        DeclareLaunchArgument("launch_moveit_rviz", default_value="true", description="Launch RViz?")
+        DeclareLaunchArgument("launch_moveit_rviz", default_value="true", description="Launch MoveIt! RViz?")
     )
     declared_arguments.append(
         DeclareLaunchArgument("launch_servo", default_value="true", description="Launch Servo?")
