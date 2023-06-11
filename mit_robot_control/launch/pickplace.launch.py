@@ -90,8 +90,7 @@ def launch_setup(context, *args, **kwargs):
     warehouse_sqlite_path = LaunchConfiguration("warehouse_sqlite_path")
     prefix = LaunchConfiguration("prefix")
     use_sim_time = LaunchConfiguration("use_sim_time")
-    launch_moveit_rviz = LaunchConfiguration("launch_moveit_rviz")
-    launch_servo = LaunchConfiguration("launch_servo")
+    launch_mtc_rviz = LaunchConfiguration("launch_mtc_rviz")
 
     joint_limit_params = PathJoinSubstitution(
         [FindPackageShare(description_package), "config", "joint_limits.yaml"]
@@ -232,12 +231,16 @@ def launch_setup(context, *args, **kwargs):
     # Load ExecuteTaskSolutionCapability so we can execute found solutions in simulation.
     move_group_capabilities = {"capabilities": "move_group/ExecuteTaskSolutionCapability"}
 
-    # Start the actual move_group node/action server
-    move_group_node = Node(
-        package="moveit_ros_move_group",
-        executable="move_group",
+    pick_place_demo = Node(
+        package="mit_robot_control",
+        executable="pick_place_demo",
         output="screen",
         parameters=[
+            os.path.join(
+                get_package_share_directory("mit_robot_control"),
+                "config",
+                "mit_robot_config.yaml",
+            ),
             robot_description,
             robot_description_semantic,
             robot_description_kinematics,
@@ -254,13 +257,13 @@ def launch_setup(context, *args, **kwargs):
 
     # rviz with moveit configuration
     rviz_config_file = PathJoinSubstitution(
-        [FindPackageShare(moveit_config_package), "rviz", "view_robot.rviz"]
+        [FindPackageShare("mit_robot_control"), "rviz", "view_robot.rviz"]
     )
     rviz_node = Node(
         package="rviz2",
-        condition=IfCondition(launch_moveit_rviz),
+        condition=IfCondition(launch_mtc_rviz),
         executable="rviz2",
-        name="rviz2_moveit",
+        name="rviz2_mtc",
         output="log",
         arguments=["-d", rviz_config_file],
         parameters=[
@@ -273,22 +276,7 @@ def launch_setup(context, *args, **kwargs):
         ],
     )
 
-    # Servo node for realtime control
-    servo_yaml = load_yaml("mit_robot_moveit_config", "config/ur_servo.yaml")
-    servo_params = {"moveit_servo": servo_yaml}
-    servo_node = Node(
-        package="moveit_servo",
-        condition=IfCondition(launch_servo),
-        executable="servo_node_main",
-        parameters=[
-            servo_params,
-            robot_description,
-            robot_description_semantic,
-        ],
-        output="screen",
-    )
-
-    nodes_to_start = [move_group_node, rviz_node, servo_node]
+    nodes_to_start = [pick_place_demo, rviz_node]
 
     return nodes_to_start
 
@@ -300,6 +288,7 @@ def generate_launch_description():
         DeclareLaunchArgument(
             "ur_type",
             description="Type/series of used UR robot.",
+            default_value="ur5e",
             choices=["ur3", "ur3e", "ur5", "ur5e", "ur10", "ur10e", "ur16e"],
         )
     )
@@ -393,10 +382,7 @@ def generate_launch_description():
         )
     )
     declared_arguments.append(
-        DeclareLaunchArgument("launch_moveit_rviz", default_value="true", description="Launch MoveIt! RViz?")
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument("launch_servo", default_value="true", description="Launch Servo?")
+        DeclareLaunchArgument("launch_mtc_rviz", default_value="true", description="Launch MTC RViz?")
     )
 
     return LaunchDescription(declared_arguments + [OpaqueFunction(function=launch_setup)])

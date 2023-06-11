@@ -1,6 +1,7 @@
 controller_names:
   - scaled_joint_trajectory_controller
   - joint_trajectory_controller
+  - gripper_controller
 
 
 scaled_joint_trajectory_controller:
@@ -27,3 +28,10 @@ joint_trajectory_controller:
     - wrist_1_joint
     - wrist_2_joint
     - wrist_3_joint
+
+gripper_controller:
+  action_ns: gripper_cmd
+  type: GripperCommand
+  max_effort: 1.0
+  joints:
+    - suction_base_joint

@@ -22,19 +22,37 @@
 		</visual>
 	</link>
 
-	<joint name="gripper_joint" type="fixed">
-		<parent link="tool0"/>
-		<child link="suction_base_link"/>
-		<origin xyz="0 0 0" rpy="0 ${pi} 0"/>
+	<joint name="suction_base_joint" type="revolute">
+		<axis xyz="1 0 0" />
+		<parent link="wrist_3_link" />
+		<child link="suction_base_link" />
+		<origin rpy="0 ${pi} 0" xyz="0 0 0" />
+		<limit effort="50" velocity="50" lower="-${pi}" upper="${pi}" />
+		<dynamics damping="0.0" friction="10"/>
 	</joint>
 
-	<!-- Adding link for gripping -->
-	<link name="suction_gripper_link"/>
+	<ros2_control name="GazeboSystem" type="system">
+    <hardware>
+      <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+    </hardware>
 
-	<joint name="suction_gripper_joint" type="fixed">
-		<parent link="suction_base_link"/>
-		<child link="suction_gripper_link"/>
-		<origin xyz="0 0 -0.1" rpy="0 0 0"/>
-	</joint>
+		<joint name="suction_base_joint">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <state_interface name="effort"/>
+    </joint>
+	</ros2_control>
+
+	<transmission name="suction_base_trans">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="suction_base_joint">
+			<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="suction_base_motor">
+			<mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+	</transmission>
+
 
 </robot>
