@@ -55,10 +55,14 @@ geometry_msgs::msg::Pose vectorToPose(const std::vector<double>& values) {
 
 namespace moveit_task_constructor_demo {
 
-void spawnObject(moveit::planning_interface::PlanningSceneInterface& psi,
+void spawnObject(const rclcpp::Publisher<moveit_msgs::msg::PlanningScene>::SharedPtr& planning_scene_pub,
                  const moveit_msgs::msg::CollisionObject& object) {
-  if (!psi.applyCollisionObject(object))
-    throw std::runtime_error("Failed to spawn object: " + object.id);
+  moveit_msgs::msg::PlanningScene planning_scene;
+  planning_scene.world.collision_objects.push_back(object);
+  planning_scene.is_diff = true;
+  planning_scene_pub->publish(planning_scene);
+  rclcpp::sleep_for(std::chrono::seconds(1));
+  RCLCPP_INFO(LOGGER, "Object added into the world");
 }
 
 moveit_msgs::msg::CollisionObject createTable(const pick_place_task_demo::Params& params) {
@@ -88,13 +92,17 @@ moveit_msgs::msg::CollisionObject createObject(const pick_place_task_demo::Param
   return object;
 }
 
-void setupDemoScene(const pick_place_task_demo::Params& params) {
+void setupDemoScene(const rclcpp::Node::SharedPtr& node, const pick_place_task_demo::Params& params) {
   // Add table and object to planning scene
-  rclcpp::sleep_for(std::chrono::microseconds(100));  // Wait for ApplyPlanningScene service
-  moveit::planning_interface::PlanningSceneInterface psi;
+
+  rclcpp::Publisher<moveit_msgs::msg::PlanningScene>::SharedPtr planning_scene_pub;
+
+  planning_scene_pub =
+    node->create_publisher<moveit_msgs::msg::PlanningScene>("planning_scene", 1);
+
   if (params.spawn_table)
-    spawnObject(psi, createTable(params));
-  spawnObject(psi, createObject(params));
+    spawnObject(planning_scene_pub, createTable(params));
+  spawnObject(planning_scene_pub, createObject(params));
 }
 
 PickPlaceTask::PickPlaceTask(const std::string& task_name) : task_name_(task_name) {}

@@ -78,7 +78,7 @@ def launch_setup(context, *args, **kwargs):
             "moveit_config_file": moveit_config_file,
             "prefix": prefix,
             "use_sim_time": "true",
-            "launch_moveit_rviz": "true",
+            "launch_moveit_rviz": "false",
         }.items(),
     )
 

@@ -53,7 +53,7 @@ int main(int argc, char** argv) {
 
   const auto param_listener = std::make_shared<pick_place_task_demo::ParamListener>(node);
   const auto params = param_listener->get_params();
-  moveit_task_constructor_demo::setupDemoScene(params);
+  moveit_task_constructor_demo::setupDemoScene(node, params);
 
   // Construct and run pick/place task
   moveit_task_constructor_demo::PickPlaceTask pick_place_task("pick_place_task");
