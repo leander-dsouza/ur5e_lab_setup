@@ -29,18 +29,12 @@
 	</joint>
 
 	<!-- Adding link for gripping -->
-	<link name="suction_gripper_link">
-		<inertial>
-			<mass value="0.001"/>
-			<inertia ixx="1e-6" ixy="0.0" ixz="0.0" iyy="1e-6" iyz="0.0" izz="1e-6"/>
-		</inertial>
-	</link>
+	<link name="suction_gripper_link"/>
 
-	<joint name="suction_gripper_joint" type="continuous">
-		<parent link="wrist_3_link"/>
+	<joint name="suction_gripper_joint" type="fixed">
+		<parent link="suction_base_link"/>
 		<child link="suction_gripper_link"/>
-		<origin xyz="0 0 0.1" rpy="0 ${-pi/2} ${pi}"/>
-		<axis xyz="0 0 1" rpy="0 0 0" />
+		<origin xyz="0 0 -0.1" rpy="0 0 0"/>
 	</joint>
 
 </robot>

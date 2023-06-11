@@ -5,7 +5,7 @@
 		<!-- Setup camera initial pose -->
     <gui>
 			<camera name="gzclient_camera">
-				<pose>1.34 0 0.68 0 0 3.1414</pose>
+				<pose>1.53 0 2.25 0 0.64 -3.1414</pose>
 			</camera>
     </gui>
 
@@ -28,6 +28,18 @@
       <uri>model://ground_plane</uri>
       <pose>0 0 0 0 0 0</pose>
     </include>
+
+		<!-- Add table -->
+		<include>
+			<uri>model://table</uri>
+			<pose>0.3 0 0 0 0 1.5707</pose>
+		</include>
+
+		<!-- Add cube -->
+		<include>
+			<uri>model://cube</uri>
+			<pose>0.5 0 2.0 0 0 0</pose>
+		</include>
 
 		<!-- keep barebones scene -->
     <scene>

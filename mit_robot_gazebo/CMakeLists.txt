@@ -13,7 +13,7 @@ find_package(ament_cmake REQUIRED)
 
 # .............. Added Block of Code ..................
 
-install(DIRECTORY launch worlds
+install(DIRECTORY launch worlds models
   DESTINATION share/${PROJECT_NAME})
 
 #......................................................

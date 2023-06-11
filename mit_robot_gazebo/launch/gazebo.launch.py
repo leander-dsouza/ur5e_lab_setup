@@ -2,6 +2,9 @@
 """
 Spawn Robot in Gazebo
 """
+import os
+from ament_index_python.packages import get_package_share_directory
+
 from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
@@ -18,6 +21,11 @@ from launch_ros.substitutions import FindPackageShare
 
 def launch_setup(context, *args, **kwargs):
     """Set up the launch description"""
+
+    pkg_dir = get_package_share_directory("mit_robot_gazebo")
+
+    os.environ["GAZEBO_MODEL_PATH"] = \
+        os.path.join(pkg_dir, 'models')
 
     # Initialize Arguments
     ur_type = LaunchConfiguration("ur_type")
@@ -135,7 +143,7 @@ def launch_setup(context, *args, **kwargs):
         package="gazebo_ros",
         executable="spawn_entity.py",
         name="spawn_ur",
-        arguments=["-entity", "ur", "-topic", "robot_description"],
+        arguments=["-entity", "ur", "-topic", "robot_description", "-x", "0", "-y", "0", "-z", "1.0"],
         output="screen",
     )
 
@@ -160,7 +168,7 @@ def generate_launch_description():
         DeclareLaunchArgument(
             "world_name",
             description="Name of world to load in Gazebo.",
-            default_value="empty.world",
+            default_value="pick_and_place.world",
         )
     )
 
