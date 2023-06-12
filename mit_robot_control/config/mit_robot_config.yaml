@@ -1,19 +1,18 @@
 /**:
   ros__parameters:
     # Total planning attempts
-    max_solutions: 10
+    max_solutions: 5
 
     # Planning group and link names
     arm_group_name: "ur_manipulator"
     eef_name: "gripper"
     hand_group_name: "gripper"
-    hand_frame: "suction_base_link"
+    hand_frame: "tool0"
 
     # Poses
     hand_open_pose: "open"
     hand_close_pose: "close"
     arm_home_pose: "home"
-
 
     # Scene frames
     world_frame: "world"
@@ -21,24 +20,20 @@
     object_reference_frame: "world"
     surface_link: "table"
 
-    # Collision object for picking
-    # CYLINDER object specifications
     object_name: "object"
-    object_dimensions: [0.25, 0.02] # [height, radius]
-    object_pose: [0.5, -0.25, 0.0, 0.0, 0.0, 0.0]
+    object_dimensions: [0.1, 0.1, 0.1]
 
     # Table model
     spawn_table: true
     table_name: "table"
-    table_dimensions: [0.4, 0.5, 0.1]  # [length, width, height]
-    table_pose: [0.5, -0.25, 0.0, 0.0, 0.0, 0.0]
+    table_dimensions: [1.5, 0.8, 0.03]  # [length, width, height]
 
     # Gripper grasp frame transform [x,y,z,r,p,y]
-    grasp_frame_transform: [0.0, 0.0, -0.245, 0.0, 0.0, 1.5707]  # 0.1 + 0.25/2 + 0.02
+    grasp_frame_transform: [0.0, 0.0, 0.1, 3.1414, 0.0, 0.0]
 
     # Place pose [x,y,z,r,p,y]
-    place_pose: [0.6, -0.15, 0.0, 0.0, 0.0, 0.0]
-    place_surface_offset: 0.0001 # place offset from table
+    place_pose: [0.5, 0.2, 0.1, 0.0, 0.0, 0.0]
+    place_surface_offset: 0.01 # place offset from table
 
     # Valid distance range when approaching an object for picking
     approach_object_min_dist: 0.1

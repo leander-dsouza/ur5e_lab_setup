@@ -53,7 +53,6 @@ int main(int argc, char** argv) {
 
   const auto param_listener = std::make_shared<pick_place_task_demo::ParamListener>(node);
   const auto params = param_listener->get_params();
-  moveit_task_constructor_demo::setupDemoScene(node, params);
 
   // Construct and run pick/place task
   moveit_task_constructor_demo::PickPlaceTask pick_place_task("pick_place_task");
@@ -64,7 +63,8 @@ int main(int argc, char** argv) {
 
   if (pick_place_task.plan(params.max_solutions)) {
     RCLCPP_INFO(LOGGER, "Planning succeded");
-    if (params.execute) {
+    bool execute = true;
+    if (execute) {
       pick_place_task.execute();
       RCLCPP_INFO(LOGGER, "Execution complete");
     } else {

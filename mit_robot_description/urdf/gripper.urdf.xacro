@@ -27,8 +27,8 @@
 		<parent link="wrist_3_link" />
 		<child link="suction_base_link" />
 		<origin rpy="0 ${pi} 0" xyz="0 0 0" />
-		<limit effort="50" velocity="50" lower="-${pi}" upper="${pi}" />
-		<dynamics damping="0.0" friction="10"/>
+		<limit effort="50" velocity="50" lower="-${0.001}" upper="${0}" />
+		<dynamics damping="1000.0" friction="1000"/>
 	</joint>
 
 	<ros2_control name="GazeboSystem" type="system">
@@ -53,6 +53,5 @@
 			<mechanicalReduction>1</mechanicalReduction>
 		</actuator>
 	</transmission>
-
 
 </robot>

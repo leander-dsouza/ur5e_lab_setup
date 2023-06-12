@@ -17,6 +17,7 @@ find_package(moveit_task_constructor_core REQUIRED)
 find_package(moveit_task_constructor_msgs REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(tf2_eigen REQUIRED)
+find_package(gazebo_msgs REQUIRED)
 
 set(THIS_PACKAGE_INCLUDE_DEPENDS
   moveit_core
@@ -26,6 +27,7 @@ set(THIS_PACKAGE_INCLUDE_DEPENDS
   moveit_task_constructor_msgs
   rclcpp
   tf2_eigen
+  gazebo_msgs
 )
 
 add_library(${PROJECT_NAME}_pick_place_task SHARED src/pick_place_task.cpp)
@@ -53,6 +55,12 @@ function(demo name)
     RUNTIME DESTINATION lib/${PROJECT_NAME}
   )
 endfunction()
+
+add_executable(pub_planning_scene src/pub_planning_scene.cpp)
+ament_target_dependencies(pub_planning_scene ${THIS_PACKAGE_INCLUDE_DEPENDS})
+install(TARGETS pub_planning_scene
+  DESTINATION lib/${PROJECT_NAME})
+
 
 demo(pick_place_demo)
 target_link_libraries(${PROJECT_NAME}_pick_place_task pick_place_demo_parameters)

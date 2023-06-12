@@ -14,10 +14,6 @@ pick_place_task_demo:
     type: double_array
     validation:
       fixed_size<>: [3]
-  table_pose:
-    type: double_array
-    validation:
-      fixed_size<>: [6]
   object_name:
     type: string
     validation:
@@ -29,11 +25,7 @@ pick_place_task_demo:
   object_dimensions:
     type: double_array
     validation:
-      fixed_size<>: [2]
-  object_pose:
-    type: double_array
-    validation:
-      fixed_size<>: [6]
+      fixed_size<>: [3]
   spawn_table:
     type: bool
     default_value: true

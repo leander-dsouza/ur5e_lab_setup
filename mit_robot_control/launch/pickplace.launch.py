@@ -276,7 +276,7 @@ def launch_setup(context, *args, **kwargs):
         ],
     )
 
-    nodes_to_start = [pick_place_demo, rviz_node]
+    nodes_to_start = [pick_place_demo]
 
     return nodes_to_start
 

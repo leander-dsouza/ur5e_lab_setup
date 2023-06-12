@@ -12,8 +12,8 @@
 				<remapping>switch:=switch_test</remapping>
 				<remapping>grasping:=grasping_test</remapping>
 			</ros>
-			<link_name>wrist_3_link</link_name>
-			<max_distance>10.0</max_distance>
+			<link_name>suction_base_link</link_name>
+			<max_distance>0.2</max_distance>
 			<fixed>ground_plane</fixed>
 		</plugin>
 	</gazebo>

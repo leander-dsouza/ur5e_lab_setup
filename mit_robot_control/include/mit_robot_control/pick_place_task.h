@@ -70,9 +70,6 @@
 namespace moveit_task_constructor_demo {
 using namespace moveit::task_constructor;
 
-// prepare a demo environment from ROS parameters under node
-void setupDemoScene(const rclcpp::Node::SharedPtr& node, const pick_place_task_demo::Params& params);
-
 class PickPlaceTask
 {
 public:
